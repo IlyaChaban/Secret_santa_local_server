@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Welcome, {{ user['username'] }}</h2>
+<p><strong>Gender:</strong> {{ user['gender'] }}</p>
+
+{% if receiver %}
+    <!-- After Reveal Date -->
+    <h3>Your Secret Santa Assignment</h3>
+    <p><strong>Receiver's Secret Name:</strong> {{ receiver['secret_nickname'] }}</p>
+    <p><strong>Receiver's Preferences:</strong> {{ receiver['preferences'] if receiver['preferences'] else "No preferences provided." }}</p>
+{% endif %}
+
+{% if show_own_secret_name %}
+    <!-- On Christmas or Later -->
+    <h3>Your Secret Name</h3>
+    <p><strong>Your Secret Name:</strong> {{ user['secret_nickname'] }}</p>
+{% endif %}
+
+{% if not receiver and not show_own_secret_name %}
+    <!-- Before Reveal Date -->
+    <form method="POST" action="{{ url_for('dashboard') }}">
+        <label for="preferences">Your Preferences:</label>
+        <textarea name="preferences" id="preferences" rows="5" placeholder="Enter your preferences here">{{ user['preferences'] }}</textarea>
+        <button type="submit">Save Preferences</button>
+    </form>
+{% endif %}
+
+<a href="{{ url_for('logout') }}">Logout</a>
+{% endblock %}

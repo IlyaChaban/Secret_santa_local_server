@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Login to Secret Santa Event</h2>
+<p>Total Registered Users: {{ user_count }}</p>
+<p><strong>Reveal Date:</strong> {{ reveal_date.strftime('%Y-%m-%d') }}</p>
+<form method="POST" action="{{ url_for('login') }}">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+</form>
+<a href="{{ url_for('register') }}">Register here</a>
+
+<hr>
+
+<h2>Rules for Participation</h2>
+<ol>
+    <li><strong>Registration:</strong> Complete the registration form to join the event.</li>
+    <li><strong>Set Preferences:</strong> Fill out your preferences on your user page after registration.</li>
+    <li><strong>Gift Assignment:</strong> On <strong>December 7, 2024</strong>, we will inform you about the person for whom you will prepare a gift.</li>
+    <li><strong>Gift Budget:</strong> The cost of the gift should not exceed <strong>250 CZK</strong>.</li>
+    <li><strong>Packaging:</strong> Pack the gift in a box and clearly write the recipient's secret username on it.</li>
+    <li><strong>Secret Name Reveal:</strong> On the day of our team beer gathering <strong>December 12, 2024</strong>, your own secret username will be revealed.</li>
+    <li><strong>Gift Collection:</strong> Find and collect your gift labeled with your secret username during the event.</li>
+</ol>
+<p>If you decide to withdraw from the event, please contact the admin to have your account removed.</p>
+
+{% endblock %}
